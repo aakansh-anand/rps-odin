@@ -1,0 +1,7 @@
+- get Computer choice with Random to choose between the three options. --
+- get Player choice with prompt of string. --
+- Make a parameter based function with Two parameters player choice and computer choice with insensitive casing. --
+- Perform the if else condition and return string for winner based on their choices. --
+- Make a new function called playGame() that calls the above functions.
+- You can Use loops to call the function 5 times.
+- In the 5 times of function, you must store the previous wins and loses.
