@@ -1,48 +1,34 @@
-function computerChoice() {
-  const choices = ["rock", "paper", "scissors"];
-  let x = Math.floor(Math.random() * 3);
-  return choices[x];
+// script.js
+
+// Get the buttons and result element
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
+const resultElement = document.getElementById('result');
+
+// Add event listeners to the buttons
+rockButton.addEventListener('click', () => playGame('rock'));
+paperButton.addEventListener('click', () => playGame('paper'));
+scissorsButton.addEventListener('click', () => playGame('scissors'));
+
+// Function to play the game
+function playGame(playerChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    let result = '';
+
+    if (playerChoice === computerChoice) {
+        result = `It's a tie! You both chose ${playerChoice}.`;
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = `You win! ${playerChoice} beats ${computerChoice}.`;
+    } else {
+        result = `You lose! ${computerChoice} beats ${playerChoice}.`;
+    }
+
+    // Display the result
+    resultElement.textContent = result;
 }
-
-function rockPaperScissors(player, computer) {
-  player = player.toLowerCase();
-  if (player !== "rock" && player !== "paper" && player !== "scissors") {
-    return "Invalid input";
-  }
-
-  if (player === computer) {
-    return `It's a tie! You both had ${player}!`;
-  } else if (player === "rock" && computer === "scissors") {
-    return `You win! ${player} beats ${computer}!`;
-  } else if (player === "paper" && computer === "rock") {
-    return `You win! ${player} beats ${computer}!`;
-  } else if (player === "scissors" && computer === "paper") {
-    return `You win! ${player} beats ${computer}!`;
-  } else {
-    return `You Lose! ${computer} beats ${player}!`;
-  }
-}
-
-function playGame() {
-  let player = prompt("Enter rock, paper, or scissors: ")
-  let computer = computerChoice();
-  return rockPaperScissors(player, computer);
-}
-
-let playerWin = 0;
-let computerWin = 0;
-let tie = 0;
-let result = "";
-
-for (let i = 0; i < 5; i++) {
-  result = playGame();
-  if (result.includes("You win!")) {
-    playerWin++;
-  } else if (result.includes("You Lose!")) {
-    computerWin++;
-  } else if (result.includes("It's a tie!")) {
-    tie++;
-  }
-  console.log(result);
-}
-console.log(`Player: ${playerWin} Computer: ${computerWin} Tie: ${tie}`);
